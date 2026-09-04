@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'product_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,40 +35,77 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   final List<Product> products = [
     Product(
+      name: 'Strawberry Cream Cake',
+      subtitle: 'Premium Bakery',
+      price: 24.99,
+      image:
+          'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&auto=format&fit=crop&q=80',
+      description:
+          'A light and fluffy sponge cake layered with fresh organic '
+          'strawberries and rich whipped cream. Perfect for any '
+          'celebration or a sweet afternoon treat. Crafted with '
+          'Madagascar vanilla and locally sourced dairy.',
+    ),
+    Product(
       name: 'Chocolate Bread',
       subtitle: 'Freshly baked',
-      price: '\$4.50',
+      price: 4.50,
       image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff',
+      description:
+          'Pan de chocolate horneado a diario con trozos de chocolate '
+          'belga fundido en cada mordida. Corteza crocante por fuera y '
+          'suave, esponjoso por dentro. // TODO: reemplaza por tu '
+          'descripción real.',
     ),
     Product(
       name: 'Chocolate Cake',
       subtitle: 'Sweet & delicious',
-      price: '\$6.80',
+      price: 6.80,
       image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587',
+      description:
+          'Torta de chocolate húmeda, cubierta con un ganache brillante '
+          'y un relleno cremoso que combina perfecto con un café. '
+          '// TODO: reemplaza por tu descripción real.',
     ),
     Product(
       name: 'Croissant',
       subtitle: 'French recipe',
-      price: '\$3.20',
+      price: 3.20,
       image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a',
+      description:
+          'Croissant elaborado con receta francesa tradicional, hojaldrado '
+          'a mano, mantequilla de la mejor calidad y horneado hasta lograr '
+          'un dorado perfecto. // TODO: reemplaza por tu descripción real.',
     ),
     Product(
       name: 'Berry Cake',
       subtitle: 'Fresh berries',
-      price: '\$7.50',
+      price: 7.50,
       image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad',
+      description:
+          'Torta ligera decorada con una selección de frutos rojos '
+          'frescos de temporada y un toque de crema chantilly. '
+          '// TODO: reemplaza por tu descripción real.',
     ),
     Product(
       name: 'Sweet Roll',
       subtitle: 'Soft & fresh',
-      price: '\$4.00',
+      price: 4.00,
       image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812',
+      description:
+          'Panecillo dulce recién horneado, suave y esponjoso, ideal '
+          'para acompañar tu desayuno o merienda. '
+          '// TODO: reemplaza por tu descripción real.',
     ),
     Product(
       name: 'Pancakes',
       subtitle: 'Sweet breakfast',
-      price: '\$5.40',
+      price: 5.40,
       image: 'https://images.unsplash.com/photo-1528207776546-365bb710ee93',
+      description:
+          'Pancakes esponjosos servidos en torre, perfectos con miel, '
+          'fruta fresca o el topping que más te guste. '
+          '// TODO: reemplaza por tu descripción real.',
     ),
   ];
 
@@ -582,15 +620,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 class Product {
   final String name;
   final String subtitle;
-  final String price;
+  final double price;
   final String image;
+  final String description;
 
   Product({
     required this.name,
     required this.subtitle,
     required this.price,
     required this.image,
+    required this.description,
   });
+
+  /// Precio formateado para mostrar en la UI, ej. "$4.50".
+  String get priceLabel => '\$${price.toStringAsFixed(2)}';
 }
 
 // ==========================================================
@@ -628,7 +671,15 @@ class _ProductCardState extends State<ProductCard> {
       },
 
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  ProductDetailScreen(product: widget.product),
+            ),
+          );
+        },
 
         onTapDown: (_) {
           setState(() {
@@ -782,7 +833,7 @@ class _ProductCardState extends State<ProductCard> {
                         Row(
                           children: [
                             Text(
-                              widget.product.price,
+                              widget.product.priceLabel,
 
                               style: const TextStyle(
                                 color: Color(0xFFE72D70),
