@@ -30,4 +30,12 @@ class AppColors {
 
   // Rosa muy pálido
   static const Color palePink = Color(0xFFFCE7EF);
+
+  static const primary = Color(0xFFEC4176); // Rosa/magenta principal
+  static const primaryLight = Color(0xFFFDE8ED); // Fondo rosa clarito
+  static const textPrimary = Color(0xFF1C1C1E); // Negro casi puro
+  static const textSecondary = Color(0xFF8A8A8E); // Gris texto secundario
+  static const border = Color(0xFFE5E5EA); // Gris borde/divisores
+  static const background = Color(0xFFFFFFFF);
+  static const priceColor = Color(0xFF1C1C1E);
 }
