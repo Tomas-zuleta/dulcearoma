@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/login_screen.dart';
 
 void main() {
@@ -10,9 +11,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFF7F7F8),
+        fontFamily: GoogleFonts.poppins().fontFamily,
+        useMaterial3: true,
+      ),
+      home: const LoginScreen(),
     );
   }
 }
